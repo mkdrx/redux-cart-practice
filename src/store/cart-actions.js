@@ -5,6 +5,7 @@ import { cartActions } from "./cart-slice";
 export const fetchCartData = () => {
   return async (dispatch) => {
     const fetchData = async () => {
+      // Firebase URL
       const response = await fetch(
         "https://react-http-4b011-default-rtdb.europe-west1.firebasedatabase.app/cart.json"
       );
@@ -49,6 +50,7 @@ export const sendCartData = (cart) => {
     );
 
     const sendRequest = async () => {
+      // Firebase URL
       const response = await fetch(
         "https://react-http-4b011-default-rtdb.europe-west1.firebasedatabase.app/cart.json",
         {
