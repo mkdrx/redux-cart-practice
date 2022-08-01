@@ -1,9 +1,12 @@
 import { uiActions } from "./ui-slice";
 import { cartActions } from "./cart-slice";
 
-// Action Creators Thunks
+// Action Creators Thunks:
+
+// Function to fetch Cart data in Firebase
 export const fetchCartData = () => {
   return async (dispatch) => {
+    // GET request to Firebase
     const fetchData = async () => {
       // Firebase URL
       const response = await fetch(
@@ -15,11 +18,11 @@ export const fetchCartData = () => {
       }
 
       const data = await response.json();
-
       return data;
     };
 
     try {
+      // In case of success fetching
       const cartData = await fetchData();
       dispatch(
         cartActions.replaceCart({
@@ -39,6 +42,7 @@ export const fetchCartData = () => {
   };
 };
 
+// Function to send Cart data to Firebase
 export const sendCartData = (cart) => {
   return async (dispatch) => {
     dispatch(
@@ -49,6 +53,7 @@ export const sendCartData = (cart) => {
       })
     );
 
+    // PUT request to Firebase
     const sendRequest = async () => {
       // Firebase URL
       const response = await fetch(
@@ -67,9 +72,10 @@ export const sendCartData = (cart) => {
       }
     };
 
+    // In case of no error: sends the request & shows success notification
+    // otherwise error notification
     try {
       await sendRequest();
-
       dispatch(
         uiActions.showNotification({
           status: "success",

@@ -16,7 +16,7 @@ const cartSlice = createSlice({
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
 
-      // No matter if there is an existing item or not, the quantity increases
+      // No matter if there is an existing item or not, the quantity increases and sets the changed state
       state.totalQuantity++;
       state.changed = true;
 
@@ -29,7 +29,7 @@ const cartSlice = createSlice({
           totalPrice: newItem.price,
           name: newItem.title,
         });
-        // If item is already in the basket, update
+        // If item is already in the basket, updates the quantity by 1 and the total price
       } else {
         existingItem.quantity++;
         existingItem.totalPrice = existingItem.totalPrice + newItem.price;
@@ -37,17 +37,17 @@ const cartSlice = createSlice({
     },
     removeItemFromCart(state, action) {
       const id = action.payload;
-      // Check how many items are in the cart array
+      // Checks if the item already exists
       const existingItem = state.items.find((item) => item.id === id);
 
       state.totalQuantity--;
       state.changed = true;
 
-      // Remove item if only one item
+      // Remove item if there's only one item
       if (existingItem.quantity === 1) {
         state.items = state.items.filter((item) => item.id !== id);
       }
-      // Reduce item by 1 from the cart array & update the price
+      // Reduce item by 1 from the cart array & update the total price
       else {
         existingItem.quantity--;
         existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
