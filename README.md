@@ -18,3 +18,4 @@
 
 ```bash
   npm install
+```
