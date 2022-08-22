@@ -1,6 +1,7 @@
 # React - Redux Cart Practice
-
 ## Based on Udemy's React Course - Maximilian Schwarzmüller
+
+![reduxcart](https://user-images.githubusercontent.com/99738621/186027805-cf135605-b990-438a-9e96-71758d949c8b.png)
 
 - Clone the project
 
@@ -18,4 +19,10 @@
 
 ```bash
   npm install
+```
+
+- Start server
+
+```bash
+  npm start
 ```
